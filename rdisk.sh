@@ -26,6 +26,7 @@ sudo umount -f -l $DISK_PATH
 sudo ntfsfix $DISK_PATH
 sudo e2label $DISK_PATH "$DISKNAME"
 echo "Remount disk $DISK_PATH with new mount point $MOUNTPOINT"
+sudo mkdir /media/$HOSTNAME > /dev/null
 sudo mkdir /media/$HOSTNAME/$DISKNAME > /dev/null
 sudo mount $DISK_PATH $MOUNTPOINT > /dev/null
 sudo chown -R $USER:$USER $MOUNTHOST > /dev/null
