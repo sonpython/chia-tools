@@ -4,6 +4,7 @@
 # usage: . ./rdisk.sh /dev/sda
 
 sudo apt-get install smartmontools -y > /dev/null
+sudo apt-get install ntfsprogs -y > /dev/null
 
 HOSTNAME=`hostname`
 DISK_PATH=$1
