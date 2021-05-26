@@ -16,17 +16,19 @@ case "${DISK_WORK_PATH: -1}" in
        DISK_WORK_PATH="${DISK_PATH%?}" ;;
 esac
 
-VENDOR=`lsblk -nd -o VENDOR $DISK_WORK_PATH | grep -o '^...'`
+# VENDOR=`lsblk -nd -o VENDOR $DISK_WORK_PATH | grep -o '^...'`
 SERIAL=`sudo smartctl -i $DISK_WORK_PATH | grep 'Serial Number' | grep -o '....$'`
-DISKNAME=$VENDOR"_"$SERIAL
+# DISKNAME=$VENDOR"_"$SERIAL - Not use Vender in Name of Disk
+DISKNAME=$SERIAL
 MOUNTHOST="/media/$HOSTNAME/"
 MOUNTPOINT="$MOUNTHOST$DISKNAME"
 echo "Identify disk name: $DISKNAME"
 echo "Umount disk $DISK_PATH"
 sudo umount -f -l $DISK_PATH > /dev/null
 # fix ntfs permission
-sudo ntfsfix $DISK_PATH &> /dev/null
+sudo ntfsfix -b -d $DISK_PATH &> /dev/null
 sudo e2label $DISK_PATH "$DISKNAME" > /dev/null
+sudo ntfslabel -f $DISK_PATH "$DISKNAME" > /dev/null
 echo "Remount disk $DISK_PATH with new mount point $MOUNTPOINT"
 sudo mkdir /media/$HOSTNAME &> /dev/null
 sudo mkdir /media/$HOSTNAME/$DISKNAME &> /dev/null
