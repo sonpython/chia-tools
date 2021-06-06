@@ -29,7 +29,7 @@ for disk in list_disk_sorted:
     print("Free: %d GiB" % (free // (2 ** 30)))
     free = free // (2 ** 30)
     i = 1
-    print(f'Round {r}', f'Turn {i}', f'is free > 240 {free > 240}', f'Remaining disk {len(list_disk_sorted) - r}')
+    print(f'Round {r}', f'Turn {i}', f'is free > 103 {free > 240}', f'Remaining disk {len(list_disk_sorted) - r}')
     while free > 103 and i <= len(list_disk_sorted) - r:
         print('============================')
         source_disk = list_disk_sorted[-i]
