@@ -44,7 +44,7 @@ for disk in list_disk_sorted:
                 free = free // (2 ** 30)
                 print(
                     f'Round {r}, Turn {i}, Plot {p}, is free > 103 {free > 103}, Remaining disk {len(list_disk_sorted) - r}, Remaining plot {len(source_disk_plots) - p}')
-                if plot_size > 108600000000
+                if plot_size > 108600000000:
                     if free > 103:
                         print('Found valid plot', plot_size, plot)
                         print(f'Moving from {source_disk} to {disk}')
