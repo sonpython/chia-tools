@@ -44,16 +44,19 @@ for disk in list_disk_sorted:
                 free = free // (2 ** 30)
                 print(
                     f'Round {r}, Turn {i}, Plot {p}, is free > 103 {free > 103}, Remaining disk {len(list_disk_sorted) - r}, Remaining plot {len(source_disk_plots) - p}')
-                if plot_size > 108600000000 and free > 103:
-                    print('Found valid plot', plot_size, plot)
-                    print(f'Moving from {source_disk} to {disk}')
-                    # print(plot, f'{disk}/{os.path.split(plot)[-1]}')
-                    destination = f'{disk}{os.path.split(plot)[-1]}'
-                    # os.replace(plot, destination)  # slow speed, does not support cross devices
-                    # os.system(f'mv {plot} {destination}')  # fastest speed
-                    print(shutil.move(plot, destination))  # slow speed, safe
-                    # move to destination disk
-                    # print(plot, destination)
+                if plot_size > 108600000000
+                    if free > 103:
+                        print('Found valid plot', plot_size, plot)
+                        print(f'Moving from {source_disk} to {disk}')
+                        # print(plot, f'{disk}/{os.path.split(plot)[-1]}')
+                        destination = f'{disk}{os.path.split(plot)[-1]}'
+                        # os.replace(plot, destination)  # slow speed, does not support cross devices
+                        # os.system(f'mv {plot} {destination}')  # fastest speed
+                        print(shutil.move(plot, destination))  # slow speed, safe
+                        # move to destination disk
+                        # print(plot, destination)
+                    else:
+                        break
                 p += 1
         except Exception as e:
             print(e)
