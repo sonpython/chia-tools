@@ -30,7 +30,7 @@ for disk in list_disk_sorted:
     free = free // (2 ** 30)
     i = 1
     print(f'Round {r}', f'Turn {i}', f'is free > 240 {free > 240}', f'Remaining disk {len(list_disk_sorted) - r}')
-    while free > 240 and i <= len(list_disk_sorted) - r:
+    while free > 103 and i <= len(list_disk_sorted) - r:
         print('============================')
         source_disk = list_disk_sorted[-i]
         source_disk_plots = glob.glob('{}/*.plot'.format(source_disk))
@@ -43,10 +43,10 @@ for disk in list_disk_sorted:
                     print('Found valid plot', plot_size, plot)
                     print(f'Moving from {source_disk} to {disk}')
                     # print(plot, f'{disk}/{os.path.split(plot)[-1]}')
-                    # os.replace(plot, f'{disk}{os.path.split(plot)[-1]}')  # slow speed, does not support cross devices
                     destination = f'{disk}{os.path.split(plot)[-1]}'
-                    os.system(f'mv {plot} {destination}')  # fastest speed
-                    # print(shutil.move(plot, f'{disk}{os.path.split(plot)[-1]}'))  # slow speed
+                    # os.replace(plot, destination)  # slow speed, does not support cross devices
+                    # os.system(f'mv {plot} {destination}')  # fastest speed
+                    print(shutil.move(plot, destination))  # slow speed, safe
                     # move to destination disk
         except Exception as e:
             print(e)
