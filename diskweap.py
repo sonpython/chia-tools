@@ -38,7 +38,6 @@ for disk in list_disk_sorted:
         print(f'source_disk {source_disk}, plot_num {len(source_disk_plots)}')
         try:
             for plot in source_disk_plots:
-                p += 1
                 plot_size = os.path.getsize(plot)
                 # only copy done plot bigger than 108600000000
                 total, used, free = shutil.disk_usage(disk)
@@ -55,6 +54,7 @@ for disk in list_disk_sorted:
                     print(shutil.move(plot, destination))  # slow speed, safe
                     # move to destination disk
                     # print(plot, destination)
+                p += 1
         except Exception as e:
             print(e)
         i += 1
