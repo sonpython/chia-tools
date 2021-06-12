@@ -11,7 +11,7 @@ while IFS= read -r line; do
     PLOT_NUM=$((FREE_SPACE / PLOT_SIZE))
     PLOT_NUM=${PLOT_NUM%.*}
     PLOT_PATH="/home/queue_plot/$IP"
-    PLOT_EXISTED=$(($(ls "/home/queue_plot/$IP" | wc -l) - 3))
+    PLOT_EXISTED=$(($(ls -lah "/home/queue_plot/$IP" | wc -l) - 3))
     echo "$IP | $FREE_SPACE | $PLOT_NUM | $PLOT_EXISTED"
     PLOT_REMAIN="$(($PLOT_NUM-$PLOT_EXISTED))"
     mkdir "$PLOT_PATH"
