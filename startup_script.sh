@@ -7,7 +7,9 @@ pkill -f chiadog
 nohup /root/chiadog/venv/bin/python -u /root/chiadog/main.py --config /root/chiadog/config.yaml > /root/chiadog/output.log &
 
 # start chia harvester
-/root/chia-blockchain/venv/bin/chia start harvester -r
+cd ~/chia-blockchain/
+. ./activate
+chia start harvester -r
 sleep 10
 
 # start mtail log
