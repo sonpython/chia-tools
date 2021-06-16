@@ -14,7 +14,7 @@ sleep 10
 
 # start mtail log
 pkill -f mtail
-cd ~/chia-blockchain/data_collect/
+cd ~/ChiaMonitor/data_collect/
 ./run_mtail.sh > /tmp/run_mtail.log
 
 
