@@ -1,5 +1,12 @@
 #!/bin/bash
 
+# create vps.txt with IP of harvester per line
+# 123.111.111.111
+# 122.222.222.222
+
+# make sure add ssh key from farmer to harvester
+# usage ./rsync_safe.sh vps.txt
+
 while IFS= read -r line; do
   IP=$line
   LOCK_FILE="/tmp/$IP.lock"
