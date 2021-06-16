@@ -15,6 +15,7 @@ sleep 10
 # start mtail log
 pkill -f mtail
 cd ~/ChiaMonitor/data_collect/
+chmod +x run_mtail.sh
 ./run_mtail.sh > /tmp/run_mtail.log
 
 

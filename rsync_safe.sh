@@ -14,9 +14,13 @@ while IFS= read -r line; do
     PLOT_EXISTED=$(($(ls -lah "/home/queue_plot/$IP" | wc -l) - 3))
     echo "$IP | $FREE_SPACE | $PLOT_NUM | $PLOT_EXISTED"
     PLOT_REMAIN="$(($PLOT_NUM-$PLOT_EXISTED))"
+    PICK_PLOT=$PLOT_REMAIN
+    if (( PICK_PLOT > 1 )) ; then
+      PICK_PLOT=1
+    fi
     if (( PLOT_REMAIN > 0 )) ; then
       mkdir "$PLOT_PATH"
-      mv `ls /home/dest_plot/*.plot | head -$PLOT_REMAIN` "$PLOT_PATH"
+      mv `ls /home/dest_plot/*.plot | head -$PICK_PLOT` "$PLOT_PATH"
       rsync --remove-source-files -avzP $PLOT_PATH/*.plot root@$IP:/mnt/plot/
       break
     fi
