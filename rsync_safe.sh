@@ -6,12 +6,14 @@
 
 # make sure add ssh key from farmer to harvester
 # usage ./rsync_safe.sh vps.txt
+# TODO: output log to separated log file for each harvester
+# TODO: Catch the current rsycn process by ps aux | grep "<IP> rsync --server" instead of lock file
 
 while IFS= read -r line; do
   IP=$line
   LOCK_FILE="/tmp/$IP.lock"
   if [ ! -f "$LOCK_FILE" ]; then
-    trap "rm -f $LOCK_FILE" EXIT
+    trap "rm -f $LOCK_FILE" INT TERM EXIT
     touch $LOCK_FILE
     FREE_SPACE=$(ssh -n -o "StrictHostKeyChecking no" root@$IP "df /dev/sdb | tail -n+2" | awk '{print $4}')
     PLOT_SIZE=108900000
