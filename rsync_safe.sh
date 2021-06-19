@@ -21,7 +21,7 @@ while IFS= read -r line; do
     PLOT_PATH="$BASE_PATH/queue_plot/$IP"
     PLOT_DEST="$BASE_PATH/dest_plot"
     mkdir -p "$PLOT_DEST"
-    PLOT_EXISTED=$(($(ls -lah "$PLOT_PATH" | wc -l) - 3))
+    PLOT_EXISTED=$(ls -lah "$PLOT_PATH/*.plot" | wc -l)
     echo "$IP | $FREE_SPACE | $PLOT_NUM | $PLOT_EXISTED"
     PLOT_REMAIN="$(($PLOT_NUM-$PLOT_EXISTED))"
     PICK_PLOT=$PLOT_REMAIN
