@@ -17,7 +17,7 @@ for d in $1/*; do
   USAGE_PCT=$(df -h $d | tail -n+2 | awk '{print $5}')
   COUNTER_DISK=$((COUNTER_DISK + 1))
   COUNTER=$((COUNTER + PLOT_COUNT))
-  echo "$COUNTER_DISK| $d | $PLOT_COUNT | $USAGE_PCT | $DISK_SIZE"
+  echo -e "$COUNTER_DISK\t$d\t$PLOT_COUNT\t$USAGE_PCT\t$DISK_SIZE"
 done
 echo "Total disk: $COUNTER_DISK"
 echo "Total plot: $COUNTER"
