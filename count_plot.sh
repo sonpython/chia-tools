@@ -13,9 +13,11 @@ COUNTER_DISK=0
 COUNTER=0
 for d in $1/*; do
   PLOT_COUNT=$(ls -lah $d/*.plot | wc -l)
+  DISK_SIZE=$(df -h $d | tail -n+2 | awk '{print $2}')
+  USAGE_PCT=$(df -h $d | tail -n+2 | awk '{print $5}')
   COUNTER_DISK=$((COUNTER_DISK + 1))
   COUNTER=$((COUNTER + PLOT_COUNT))
-  echo "$d | $PLOT_COUNT"
+  echo "$COUNTER_DISK| $d | $PLOT_COUNT | $USAGE_PCT | $DISK_SIZE"
 done
 echo "Total disk: $COUNTER_DISK"
 echo "Total plot: $COUNTER"
