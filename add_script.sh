@@ -20,7 +20,7 @@ for d in $1/*/*; do
     PLOT_COUNT=$(ls -lah $d/*.plot 2>/dev/null | wc -l)
     COUNTER=$((COUNTER + PLOT_COUNT))
     COUNTER_DISK=$((COUNTER_DISK + 1))
-    echo "$COUNTER_DISK | Added $d | Plot: $PLOT_COUNT"
+    echo -e "$COUNTER_DISK\t$d\t$PLOT_COUNT"
 done
 
 # remove anchor - tmpdirectory
