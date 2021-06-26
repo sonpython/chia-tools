@@ -15,7 +15,7 @@ while IFS= read -r line; do
   if [ ! -f "$LOCK_FILE" ]; then
     trap "rm -f $LOCK_FILE" INT TERM EXIT
     touch $LOCK_FILE
-    FREE_SPACE=$(ssh -n -o "StrictHostKeyChecking no" root@$IP "df /dev/sdb | tail -n+2" | awk '{print $4}')
+    FREE_SPACE=$(ssh -n -o "StrictHostKeyChecking no" root@$IP "df $3 | tail -n+2" | awk '{print $4}')
     PLOT_SIZE=108900000
     PLOT_NUM=$((FREE_SPACE / PLOT_SIZE))
     PLOT_NUM=${PLOT_NUM%.*}
