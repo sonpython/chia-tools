@@ -33,7 +33,7 @@ while IFS= read -r line; do
     if (( PLOT_REMAIN > 0 )) ; then
       mkdir -p "$PLOT_PATH"
       mv `ls $PLOT_DEST/*.plot | head -$PICK_PLOT` "$PLOT_PATH"
-      rsync --remove-source-files -avzP $PLOT_PATH/*.plot root@$IP:/mnt/plot/
+      rsync --remove-source-files -avzP $PLOT_PATH/*.plot root@$IP:$3
       break
     fi
   fi
